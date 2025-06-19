@@ -4,13 +4,14 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
 
 interface LayoutProps { children: ReactNode; }
 
 export default function Layout({ children }: LayoutProps) {
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="static" color="primary">
         <Toolbar>
           {['Home','Website Design','Business Resources','About'].map((label, i) => {
             const href = ['/', '/website-design', '/business-resources-design', '/about'][i];
@@ -22,8 +23,10 @@ export default function Layout({ children }: LayoutProps) {
           })}
         </Toolbar>
       </AppBar>
-      <Container maxWidth="md" sx={{ my: 4 }}>
-        {children}
+      <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
+        <Paper elevation={1} sx={{ p: 4, backgroundColor: 'background.default' }}>
+          {children}
+        </Paper>
       </Container>
     </>
   );

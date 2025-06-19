@@ -1,10 +1,7 @@
 import type { AppProps } from 'next/app';
-import { ThemeProvider, CssBaseline, createTheme } from '@mui/material';
+import { ThemeProvider, CssBaseline } from '@mui/material';
 import Layout from '../components/Layout';
-
-const theme = createTheme({
-  palette: { mode: 'light' },
-});
+import theme from '../components/theme';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
