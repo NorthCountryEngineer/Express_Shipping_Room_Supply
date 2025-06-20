@@ -1,8 +1,8 @@
 import * as React from 'react';
-import MarketingPage from '../marketing-page/MarketingPage';
+import HomePage from '../home-page/HomePage';
 
 export default function Marketing() {
-  return <MarketingPage disableCustomTheme />;
+  return <HomePage disableCustomTheme />;
 }
 
 Marketing.getLayout = (page: React.ReactNode) => page;

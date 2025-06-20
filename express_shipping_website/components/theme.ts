@@ -23,6 +23,26 @@ const theme = createTheme({
     h1: { fontSize: '2.5rem' },
     h2: { fontSize: '2rem' },
     body1: { fontSize: '1rem' },
+    button: {
+      fontFamily: "'Montserrat', sans-serif",
+      fontWeight: 600,
+      letterSpacing: '0.5px',
+      textTransform: 'none',
+      fontSize: '0.875rem',     // 14px
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          // ensure any size/color/etc still use the same styles
+          fontFamily: "'Montserrat', sans-serif",
+          fontWeight: 600,
+          letterSpacing: '0.5px',
+          textTransform: 'none',
+        },
+      },
+    },
   },
 });
 
