@@ -2,29 +2,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import InputLabel from '@mui/material/InputLabel';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
-
-const StyledBox = styled('div')(({ theme }) => ({
-  alignSelf: 'center',
-  width: '100%',
-  height: 400,
-  marginTop: theme.spacing(8),
-  borderRadius: (theme.vars || theme).shape.borderRadius,
-  outline: '6px solid',
-  outlineColor: 'hsla(220, 25%, 80%, 0.2)',
-  border: '1px solid',
-  borderColor: (theme.vars || theme).palette.grey[200],
-  boxShadow: '0 0 12px 8px hsla(220, 25%, 80%, 0.2)',
-  backgroundSize: 'cover',
-  [theme.breakpoints.up('sm')]: {
-    marginTop: theme.spacing(10),
-    height: 700,
-  },
-}));
 
 export default function Hero() {
   return (
@@ -82,13 +61,18 @@ export default function Hero() {
           </Typography>
 
           {/* Secondary CTA */}
-          <Button variant="outlined" color="primary" size="small" sx={{ mt: 1 }}>
+          <Button
+            component="a"
+            href="#features"
+            variant="outlined"
+            color="primary"
+            size="small"
+            sx={{ mt: 1 }}
+          >
             Learn More
           </Button>
         </Stack>
 
-        {/* Placeholder for your background/illustration */}
-        <StyledBox id="image" />
       </Container>
     </Box>
   );
