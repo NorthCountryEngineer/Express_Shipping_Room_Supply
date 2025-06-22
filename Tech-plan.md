@@ -16,7 +16,7 @@ In short, the backend envisioned is essentially a **comprehensive ERP/CRM platfo
 
 ## Industry Approaches and Best Practices
 
-Large distribution companies (like Uline, a major packaging supplier) handle these functions with tightly integrated systems. Typically, they employ a robust **ERP (Enterprise Resource Planning)** system that brings together order processing, inventory management, procurement, and financials. In distribution, an ERP serves as the central backbone tying together inventory, sales orders, purchasing, and accounting. On top of the ERP, they often have specialized subsystems or modules:
+Large distribution companies (like Uline, a major packaging supplier and Express Shipping's number one online competitor) handle these functions with tightly integrated systems. They employ an**ERP (Enterprise Resource Planning)** system that brings together order processing, inventory management, procurement, and financials. In distribution, an ERP serves as the central backbone tying together inventory, sales orders, purchasing, and accounting. On top of the ERP, they often have specialized subsystems or modules:
 
 * A **Warehouse Management System (WMS)** to manage inventory storage, pick/pack operations, and shipments in the warehouse.
 * A **Transportation Management System (TMS)** to manage the scheduling and dispatch of deliveries (including integration with carriers like UPS/FedEx for parcel shipments and managing their own delivery trucks).
@@ -32,7 +32,7 @@ Critically, large distributors often use **commercial ERP solutions (like SAP, O
 
 ## Microservices Architecture for a Logistics Platform
 
-To achieve a flexible and scalable system, a **microservices architecture** is a compelling approach. Instead of one giant application, the system is composed of multiple **domain-focused services**, each responsible for a specific business function. These services communicate with each other asynchronously, typically via an **event bus** or message queue, forming an event-driven system. This design can mirror the modular needs of supply chain and logistics operations.
+To achieve a flexible and scalable system, a **microservices architecture** is a compelling approach. Instead of one giant application, the system is composed of multiple **domain-focused services**, each responsible for a specific business function. These services communicate with each other asynchronously, typically via an **event bus** or message queue, forming an event-driven system. This design can mirror the modular needs of supply chain and logistics operations while allowing technical service desk de-complication by segregated microservice domain alignment (e.g., even if soliciting help from university students or fiverr participants, it's easy to select the right repair technician. Event bus? Data Engineer. Website? Front End Engineer. Database or API? Backend Engineer.)
 
 In a microservices model for this backend, we would have services such as:
 
