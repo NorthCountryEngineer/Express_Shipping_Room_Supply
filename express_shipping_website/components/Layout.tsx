@@ -5,7 +5,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
-import AppAppBar from '@/home-page/components/AppAppBar';
+import AppAppBar from '@/components/MenuBar';
 
 interface LayoutProps { children: ReactNode; }
 
