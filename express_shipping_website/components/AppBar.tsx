@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import AppBar from '@mui/material/AppBar';
+import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
@@ -11,8 +11,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import ColorModeIconDropdown from '../../shared-theme/ColorModeIconDropdown';
-import Logo from './Logo';
+import ColorModeIconDropdown from '../shared-theme/ColorModeIconDropdown';
+import Logo from '../home-page/components/Logo';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
@@ -30,7 +30,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   padding: '8px 12px',
 }));
 
-export default function AppAppBar() {
+export default function AppBar() {
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -38,7 +38,7 @@ export default function AppAppBar() {
   };
 
   return (
-    <AppBar
+    <MuiAppBar
       position="fixed"
       enableColorOnDark
       sx={{
@@ -70,6 +70,6 @@ export default function AppAppBar() {
           
         </StyledToolbar>
       </Container>
-    </AppBar>
+    </MuiAppBar>
   );
 }
