@@ -11,7 +11,7 @@ import { useColorScheme } from '@mui/material/styles';
 
 const userTestimonials = [
   {
-    //avatar: <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />,
+    avatar: <Avatar alt="Remy Sharp" src="" />,
     name: 'Remy Sharp',
     occupation: 'Senior Engineer',
     testimonial:
@@ -45,7 +45,7 @@ const logoStyle = {
 export default function Testimonials() {
   const { mode, systemMode } = useColorScheme();
 
-  let logos;
+  let logos:any;
   if (mode === 'system') {
     if (systemMode === 'light') {
       logos = lightModeLogos;
