@@ -14,7 +14,7 @@ export default function Layout({ children }: LayoutProps) {
     <>
       <AppAppBar />
       <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
-        <Paper elevation={1} sx={{ p: 4, backgroundColor: 'background.default' }}>
+        <Paper elevation={1} sx={{ mt:10, p: 4, backgroundColor: 'background.default' }}>
           {children}
         </Paper>
       </Container>
