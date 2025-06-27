@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import AppAppBar from '@/components/MenuBar';
+import { alpha } from '@mui/material/styles';
 import { Box } from '@mui/material';
 
 interface LayoutProps { children: ReactNode; }
@@ -28,7 +29,14 @@ export default function Layout({ children }: LayoutProps) {
       />
       <AppAppBar />
       <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
-        <Paper elevation={1} sx={{ mt:10, p: 4, backgroundColor: 'background.default' }}>
+        <Paper 
+          elevation={1} 
+          sx={(theme) => ({
+            mt: 10,
+            p: 4,
+            backgroundColor: alpha(theme.palette.background.default, 0.7),
+          })}
+        >
           {children}
         </Paper>
       </Container>
