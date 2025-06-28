@@ -5,13 +5,15 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
+import DarkModeIcon from '@mui/icons-material/DarkModeRounded';
+import LightModeIcon from '@mui/icons-material/LightModeRounded';
+import { useColorScheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import ColorModeIconDropdown from '../shared-theme/ColorModeIconDropdown';
 import Logo from '../home-page/components/Logo';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
@@ -32,6 +34,11 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 
 export default function MenuBar() {
   const [open, setOpen] = React.useState(false);
+  const { mode, setMode } = useColorScheme();
+
+  const handleToggleMode = () => {
+    setMode(mode === 'light' ? 'dark' : 'light');
+  };
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
@@ -67,6 +74,9 @@ export default function MenuBar() {
               </Button>
             </Box>
           </Box>
+          <IconButton color="inherit" onClick={handleToggleMode} size="small">
+            {mode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+          </IconButton>
         </StyledToolbar>
       </Container>
     </AppBar>
