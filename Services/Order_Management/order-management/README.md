@@ -1,26 +1,71 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Order Management Service
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This service handles order creation, updates, and fulfillment for Express Shipping Room Supply.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Development
 
+1. Install dependencies
+    ```bash
+    npm install
+    ```
+2. Start the service
+    ```bash
+    npm run start:dev
+    ```
+
+## Deployment
+
+A Helm chart is provided under `infrastructure/helm/microservices/templates/order-management/`.
+
+### Prerequisites
+
+- Access to a Kubernetes cluster
+- Helm installed
+- Postgres database credentials
+- Kafka bootstrap servers
+
+### Required Values
+
+Set the following values (e.g., in `values.yaml`) before deploying:
+
+| Key | Description |
+|-----|-------------|
+| `postgres.host` | Database host name |
+| `postgres.port` | Database port |
+| `postgres.username` | Postgres user name |
+| `postgres.password` | Postgres user password |
+| `postgres.database` | Name of the database |
+| `kafka.bootstrapServers` | Comma-separated list of Kafka brokers |
+
+Example `values.yaml` snippet:
+```yaml
+postgres:
+  host: db.example.com
+  port: 5432
+  username: order_user
+  password: secret
+  database: order_db
+kafka:
+  bootstrapServers: kafka1:9092,kafka2:9092
+```
+
+### Deploy via Helm
+
+1. Change to the Helm chart directory:
+    ```bash
+    cd infrastructure/helm/microservices/templates/order-management
+    ```
+2. Install or upgrade the release:
+    ```bash
+    helm upgrade --install order-management . \
+      --namespace order-management \
+      --create-namespace \
+      -f values.yaml
+    ```
+3. Check the rollout status:
+    ```bash
+    kubectl get pods -n order-management
+    ```
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
