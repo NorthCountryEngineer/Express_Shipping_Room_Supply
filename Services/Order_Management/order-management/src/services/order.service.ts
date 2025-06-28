@@ -18,7 +18,7 @@ export class OrderService {
     return this.orders.find({ relations: ['items', 'state', 'events'] });
   }
 
-  async findOne(id: string): Promise<Order> {
+  async findOne(id: string): Promise<Order | null> {
     return this.orders.findOne({
       where: { id },
       relations: ['items', 'state', 'events'],
@@ -32,7 +32,7 @@ export class OrderService {
     return created;
   }
 
-  async update(id: string, order: Partial<Order>): Promise<Order> {
+  async update(id: string, order: Partial<Order>): Promise<Order | null> {
     await this.orders.update(id, order);
     return this.findOne(id);
   }
@@ -45,7 +45,10 @@ export class OrderService {
     return this.items.save(this.items.create(item));
   }
 
-  async updateItem(id: string, item: Partial<OrderItem>): Promise<OrderItem> {
+  async updateItem(
+    id: string,
+    item: Partial<OrderItem>,
+  ): Promise<OrderItem | null> {
     await this.items.update(id, item);
     return this.items.findOne({ where: { id }, relations: ['order'] });
   }
@@ -54,7 +57,7 @@ export class OrderService {
     return this.items.find({ relations: ['order'] });
   }
 
-  async findItem(id: string): Promise<OrderItem> {
+  async findItem(id: string): Promise<OrderItem | null> {
     return this.items.findOne({ where: { id }, relations: ['order'] });
   }
 
