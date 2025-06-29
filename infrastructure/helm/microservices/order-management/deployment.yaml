@@ -12,6 +12,17 @@ spec:
       labels:
         app: order-management
     spec:
+      initContainers:
+        - name: wait-for-deps
+          image: busybox:stable
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for Postgres…"
+              until nc -z {{ .Values.postgres.host }} {{ .Values.postgres.port }}; do sleep 2; done
+              echo "Waiting for Kafka…"
+              until nc -z {{ index (splitList "," .Values.kafka.bootstrapServers) 0 }} 9092; do sleep 2; done
       containers:
         - name: order-management
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
