@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: test-connection
+  labels:
+    app.kubernetes.io/name: database
+spec:
+  backoffLimit: 1
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: pg-test
+          image: bitnami/postgresql:15
+          command:
+            - pg_isready
+          args:
+            - -h
+            - database-postgresql
+            - -p
+            - "5432"
+            - -U
+            - "postgres"
