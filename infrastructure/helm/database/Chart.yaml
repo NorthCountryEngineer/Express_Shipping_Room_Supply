@@ -4,3 +4,8 @@ description: Shared PostgreSQL database service
 version: 0.1.0
 type: application
 appVersion: "15"
+
+dependencies:
+  - name: postgresql
+    version: "12.*"
+    repository: "https://charts.bitnami.com/bitnami"
