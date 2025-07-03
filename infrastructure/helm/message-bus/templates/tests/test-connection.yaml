@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: test-kafka
+  labels:
+    helm.sh/hook: test
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: kafka-test
+          image: bitnami/kafka:latest
+          command:
+            - bash
+            - -c
+            - kafka-topics.sh --bootstrap-server kafka:9092 --list
