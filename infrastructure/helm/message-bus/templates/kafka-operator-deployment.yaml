@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.operator.fullnameOverride }}
+  labels:
+    app: strimzi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: strimzi
+  template:
+    metadata:
+      labels:
+        app: strimzi
+    spec:
+      serviceAccountName: message-bus
+      containers:
+        - name: operator
+          image: "quay.io/strimzi/operator:{{ .Chart.AppVersion }}"
+          imagePullPolicy: IfNotPresent

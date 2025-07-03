@@ -1,0 +1,17 @@
+operator:
+  fullnameOverride: kafka-operator
+  watchNamespaces: []
+kafkaCluster:
+  name: kafka
+  replicas: 3
+  listeners:
+    plain: {}
+    tls: {}
+  storage:
+    type: persistent-claim
+    size: 10Gi
+  zookeeper:
+    replicas: 3
+    storage:
+      type: persistent-claim
+      size: 5Gi
