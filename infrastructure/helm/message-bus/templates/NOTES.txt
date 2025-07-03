@@ -1,0 +1,5 @@
+1. To port-forward Kafka client access:
+   kubectl port-forward svc/{{ .Values.kafkaCluster.name }}-kafka-bootstrap 9092 -n {{ .Release.Namespace }}
+
+2. Check Kafka cluster status:
+   kubectl get kafka {{ .Values.kafkaCluster.name }} -n {{ .Release.Namespace }} -o yaml

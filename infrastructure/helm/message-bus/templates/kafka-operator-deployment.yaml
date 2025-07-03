@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.operator.fullnameOverride }}
+  labels:
+    app.kubernetes.io/name: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ .Release.Name }}
+    spec:
+      serviceAccountName: message-bus
+      containers:
+        - name: operator
+          image: "quay.io/strimzi/operator:{{ .Chart.Dependencies | first | .version }}"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: STRIMZI_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          args: ["/opt/strimzi/bin/cluster_operator_run.sh"]
