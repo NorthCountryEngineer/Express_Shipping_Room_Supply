@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: test-kafka
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: kafka-client
+          image: bitnami/kafka:latest
+          command: ["/bin/sh","-c"]
+          args:
+            - kafka-topics.sh --bootstrap-server {{ .Values.kafkaCluster.name }}-bootstrap:9092 --list
