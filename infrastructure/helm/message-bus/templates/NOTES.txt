@@ -1,8 +1,0 @@
-To verify the Strimzi operator:
-  kubectl rollout status deployment/{{ .Values.operator.fullnameOverride }} -n {{ .Release.Namespace }}
-
-To check Kafka readiness:
-  kubectl rollout status statefulset/{{ .Values.kafkaCluster.name }} -n {{ .Release.Namespace }}
-
-To port-forward to Kafka:
-  kubectl port-forward svc/{{ .Values.kafkaCluster.name }}-bootstrap 9092:9092 -n {{ .Release.Namespace }}
