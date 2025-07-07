@@ -24,9 +24,9 @@ kubectl rollout status statefulset/database-postgresql -n infra --timeout=120s
 
 # === 3. Deploy Kafka (Strimzi) ===
 echo "🚀 Deploying Kafka..."
-helm upgrade --install kafka ./infrastructure/helm/message_bus \
+helm upgrade --install kafka ./infrastructure/helm/message-bus \
   --namespace infra --create-namespace \
-  -f infrastructure/helm/message_bus/values.yaml
+  -f infrastructure/helm/message-bus/values.yaml
 
 echo "⏳ Waiting for Kafka to be ready..."
 # adjust label if your Strimzi chart names it differently
