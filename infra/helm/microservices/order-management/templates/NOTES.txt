@@ -1,0 +1,9 @@
+1. To access the Order Management service run:
+
+   kubectl --namespace {{ .Release.Namespace }} port-forward svc/{{ include "order-management.fullname" . }} 3000:3000
+
+2. Ensure the following secrets exist with appropriate values:
+   - Database password secret: {{ .Values.database.secretName }} (key: `password`)
+   - Keycloak client secret: {{ .Values.keycloak.secretName }} (key: `clientSecret`)
+
+Environment variables are configured automatically from chart values and secrets.

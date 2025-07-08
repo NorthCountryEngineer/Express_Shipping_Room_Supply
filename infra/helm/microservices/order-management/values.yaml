@@ -1,0 +1,33 @@
+image:
+  repository: order-management
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+database:
+  host: postgres
+  port: 5432
+  name: orders
+  user: order_user
+  password: ""
+  secretName: order-management-db
+
+kafka:
+  bootstrapServers: kafka:9092
+  topic: orders
+
+keycloak:
+  url: http://keycloak
+  realm: shipping
+  clientId: order-management
+  clientSecret: ""
+  secretName: order-management-keycloak
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi

@@ -1,0 +1,7 @@
+apiVersion: v2
+name: order-management
+description: Order Management microservice
+version: 0.1.0
+appVersion: "0.0.1"
+type: application
+dependencies: []
