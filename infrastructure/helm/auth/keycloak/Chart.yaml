@@ -1,0 +1,7 @@
+apiVersion: v2
+name: keycloak
+version: 0.1.0
+description: Minimal Keycloak deployment
+appVersion: "23.0.0"
+type: application
+dependencies: []
