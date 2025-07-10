@@ -1,0 +1,26 @@
+# Enable KRaft broker and disable ZooKeeper
+mode: kraft
+
+# Spin up one controller (you already saw these)
+controller:
+  enabled: true
+  replicaCount: 1
+
+# Spin up one broker (this is missing right now)
+kafka:
+  enabled: true
+  replicaCount: 1
+
+# Don’t deploy ZK
+zookeeper:
+  enabled: false
+
+# Plaintext, for testing
+auth:
+  clientProtocol: plaintext
+
+# Persist data
+persistence:
+  enabled: true
+  storageClass: standard
+  size: 8Gi
