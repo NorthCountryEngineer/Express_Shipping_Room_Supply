@@ -10,33 +10,30 @@ PR_NUM=$1
 REMOTE=${2:-origin}
 PR_BRANCH="pr-${PR_NUM}"
 
-echo "🔄 Fetching latest ${REMOTE}/main…"
-git fetch "${REMOTE}" main
-git checkout main
-git reset --hard "${REMOTE}/main"
-
-echo "🔄 Fetching PR #${PR_NUM} into branch ${PR_BRANCH}…"
-git fetch "${REMOTE}" pull/"${PR_NUM}"/head:"${PR_BRANCH}"
-
-echo "🔀 Checking out ${PR_BRANCH}…"
-git checkout "${PR_BRANCH}"
-
-echo "🔄 Rebasing ${PR_BRANCH} onto main…"
-git rebase main
-
-echo "⬅️  Switching back to main…"
+# 1) Make sure we're on your local main and bring it up-to-date
+echo "➡️  Checking out your local main…"
 git checkout main
 
+echo "⬆️  Fetching & rebasing ${REMOTE}/main onto your main…"
+git fetch ${REMOTE} main
+git rebase ${REMOTE}/main
+
+# 2) Fetch the PR into its own branch
+echo "🔄 Fetching PR #${PR_NUM} into ${PR_BRANCH}…"
+git fetch ${REMOTE} pull/${PR_NUM}/head:${PR_BRANCH}
+
+# 3) Merge the PR branch into your updated main
 echo "🔀 Merging ${PR_BRANCH} into main…"
 git merge --no-ff "${PR_BRANCH}" -m "Merge PR #${PR_NUM}"
 
-echo "🧹 Deleting temporary branch…"
+# 4) Clean up
+echo "🧹 Deleting temporary branch ${PR_BRANCH}…"
 git branch -d "${PR_BRANCH}"
 
 echo
-echo "✅ Local merge complete. Here’s your history:"
+echo "✅ Merge complete! Latest commits:"
 git log --oneline -5
 
 echo
-echo "Next, push the new merge commit to ${REMOTE}:"
-echo "  git push ${REMOTE} main"
+echo "👉 Now push to ${REMOTE}:"
+echo "   git push ${REMOTE} main"
