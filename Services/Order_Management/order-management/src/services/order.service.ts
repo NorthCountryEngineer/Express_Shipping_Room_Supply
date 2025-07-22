@@ -1,11 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Order } from '../entities/order.entity';
 import { OrderItem } from '../entities/order-item.entity';
 import { ClientKafka } from '@nestjs/microservices';
-import { Inject } from '@nestjs/common';
-import { NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class OrderService {
@@ -22,7 +20,7 @@ export class OrderService {
   async findOne(id: string): Promise<Order> {
     return this.orders.findOneOrFail({
       where: { id },
-      relations: ['items','state','events'],
+      relations: ['items', 'state', 'events'],
     });
   }
 
@@ -37,7 +35,7 @@ export class OrderService {
     await this.orders.update(id, order);
     return this.orders.findOneOrFail({
       where: { id },
-      relations: ['items','state','events'],
+      relations: ['items', 'state', 'events'],
     });
   }
 
@@ -49,7 +47,7 @@ export class OrderService {
     return this.items.save(this.items.create(item));
   }
 
-  async updateItem(id: string,item: Partial<OrderItem>,): Promise<OrderItem> {
+  async updateItem(id: string, item: Partial<OrderItem>): Promise<OrderItem> {
     await this.items.update(id, item);
     return this.items.findOneOrFail({ where: { id }, relations: ['order'] });
   }
@@ -59,7 +57,7 @@ export class OrderService {
   }
 
   async findItem(id: string): Promise<OrderItem> {
-    return this.items.findOneOrFail({ where:{id}, relations:['order'] });
+    return this.items.findOneOrFail({ where: { id }, relations: ['order'] });
   }
 
   async removeItem(id: string): Promise<void> {
