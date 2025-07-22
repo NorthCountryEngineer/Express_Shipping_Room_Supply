@@ -7,7 +7,7 @@ replicaCount: 1
 
 image:
   repository: ncacademy/express_shipping
-  tag: "latest"
+  tag: latest
   pullPolicy: IfNotPresent
 
 kafka:

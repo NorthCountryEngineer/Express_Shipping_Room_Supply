@@ -1,10 +1,19 @@
-#!/bin/sh
-set -e
+#!/usr/bin/env bash
+set -euo pipefail
 
-docker build -t ncacademy/express_shipping:latest .
+# ─── CONFIG ────────────────────────────────────────────────────────────────────
+SERVICE_DIR="Services/Order_Management/order-management"
+IMAGE="ncacademy/express_shipping"
+TAG="latest"
+# ────────────────────────────────────────────────────────────────────────────────
 
-docker login
+echo "🔹 Building Docker image from ${SERVICE_DIR} …"
+docker build \
+  -t ${IMAGE}:${TAG} \
+  -f ${SERVICE_DIR}/Dockerfile \
+  ${SERVICE_DIR}
 
-docker push ncacademy/express_shipping:latest
+echo "🔹 Pushing image to Docker Hub…"
+docker push ${IMAGE}:${TAG}
 
-echo "✅ Image built & pushed"
+echo "✅ Built & pushed ${IMAGE}:${TAG}"
