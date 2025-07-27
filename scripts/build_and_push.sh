@@ -2,7 +2,9 @@
 set -euo pipefail
 
 # ─── CONFIG ────────────────────────────────────────────────────────────────────
-SERVICE_DIR="Services/Order_Management/order-management"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="${SCRIPT_DIR}/.."
+SERVICE_DIR="${PROJECT_ROOT}/Services/Order_Management/order-management"
 IMAGE="ncacademy/express_shipping"
 TAG="latest"
 # ────────────────────────────────────────────────────────────────────────────────

@@ -12,4 +12,5 @@ WORKDIR /app
 COPY --from=build /app/dist ./dist
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev
+RUN ls node_modules | grep kafkajs
 CMD ["node", "dist/main"]
